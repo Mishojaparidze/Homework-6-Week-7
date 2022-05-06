@@ -1,0 +1,16 @@
+C:\Users\misho\source\repos\Homework-6 Week-7\bin\Debug\net5.0\Homework-6 Week-7.exe
+C:\Users\misho\source\repos\Homework-6 Week-7\bin\Debug\net5.0\Homework-6 Week-7.deps.json
+C:\Users\misho\source\repos\Homework-6 Week-7\bin\Debug\net5.0\Homework-6 Week-7.runtimeconfig.json
+C:\Users\misho\source\repos\Homework-6 Week-7\bin\Debug\net5.0\Homework-6 Week-7.runtimeconfig.dev.json
+C:\Users\misho\source\repos\Homework-6 Week-7\bin\Debug\net5.0\Homework-6 Week-7.dll
+C:\Users\misho\source\repos\Homework-6 Week-7\bin\Debug\net5.0\Homework-6 Week-7.pdb
+C:\Users\misho\source\repos\Homework-6 Week-7\obj\Debug\net5.0\Homework-6 Week-7.csproj.AssemblyReference.cache
+C:\Users\misho\source\repos\Homework-6 Week-7\obj\Debug\net5.0\Homework-6 Week-7.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\misho\source\repos\Homework-6 Week-7\obj\Debug\net5.0\Homework-6 Week-7.AssemblyInfoInputs.cache
+C:\Users\misho\source\repos\Homework-6 Week-7\obj\Debug\net5.0\Homework-6 Week-7.AssemblyInfo.cs
+C:\Users\misho\source\repos\Homework-6 Week-7\obj\Debug\net5.0\Homework-6 Week-7.csproj.CoreCompileInputs.cache
+C:\Users\misho\source\repos\Homework-6 Week-7\obj\Debug\net5.0\Homework-6 Week-7.dll
+C:\Users\misho\source\repos\Homework-6 Week-7\obj\Debug\net5.0\refint\Homework-6 Week-7.dll
+C:\Users\misho\source\repos\Homework-6 Week-7\obj\Debug\net5.0\Homework-6 Week-7.pdb
+C:\Users\misho\source\repos\Homework-6 Week-7\obj\Debug\net5.0\Homework-6 Week-7.genruntimeconfig.cache
+C:\Users\misho\source\repos\Homework-6 Week-7\obj\Debug\net5.0\ref\Homework-6 Week-7.dll
