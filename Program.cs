@@ -5,7 +5,7 @@ namespace Homework_6_Week_7
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             #region SolutionN1
 
@@ -121,18 +121,18 @@ namespace Homework_6_Week_7
 
             #region SolutionN5
 
-            Console.WriteLine("SolutionN5");
+            Console.WriteLine("SolutionN5 ");
             Console.WriteLine("Enter the hours of work for 5 days:");
-            int[] arrayWourkoutHours = new int[5];
+            int[] arrayWourkoutHour = new int[5];
             int k=0;
             for (int i = 0; i < 5; i++)
             {
-                arrayWourkoutHours[i] = Convert.ToInt32(Console.ReadLine());
+                arrayWourkoutHour[i] = Convert.ToInt32(Console.ReadLine());
             }
             
-            for (int i = 0; i < arrayWourkoutHours.Length-1; i++)
+            for (int i = 0; i < arrayWourkoutHour.Length-1; i++)
             {
-                if (arrayWourkoutHours[i] < arrayWourkoutHours[i+1])
+                if (arrayWourkoutHour[i] < arrayWourkoutHour[i+1])
                 {
                     k++;
                 }
