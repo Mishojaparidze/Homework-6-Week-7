@@ -7,6 +7,8 @@ namespace Homework_6_Week_7
     {
         static void Main()
         {
+
+
         }
     }
 }
