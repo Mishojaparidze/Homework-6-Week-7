@@ -8,7 +8,7 @@ namespace Homework_6_Week_7
     {
         static void GetGenericValue<T>(List<T> someList)
         {
-            int k=0;
+            int k = 0;
             if (typeof(T) == typeof(int))
             {
                 foreach (var integ in someList)
@@ -24,13 +24,13 @@ namespace Homework_6_Week_7
                     Console.WriteLine(s.ToString().ToUpper());
                 }
             }
-           else
+            else
             {
-                int j =someList.Count;
+                int j = someList.Count;
                 int p = someList.Count / 2;
                 Console.WriteLine(someList[0]);
-                Console.WriteLine(j);
-                Console.WriteLine(p); 
+                Console.WriteLine(someList[j]);
+                Console.WriteLine(someList[p]);
 
             }
         }
