@@ -9,13 +9,29 @@ namespace Homework_6_Week_7
         static void GetGenericValue<T>(List<T> someList)
         {
             int k=0;
-           bool isNumber=int.TryParse(someList[0].ToString(), out var number);
-            if (isNumber)
+            if (typeof(T) == typeof(int))
             {
-                for (int i = 0; i < someList.Count; i++)
+                foreach (var integ in someList)
                 {
-                    
+                    k += Convert.ToInt32(integ);
                 }
+                Console.WriteLine(k);
+            }
+            else if (typeof(T) == typeof(string))
+            {
+                foreach (var s in someList)
+                {
+                    Console.WriteLine(s.ToString().ToUpper());
+                }
+            }
+           else
+            {
+                int j =someList.Count;
+                int p = someList.Count / 2;
+                Console.WriteLine(someList[0]);
+                Console.WriteLine(j);
+                Console.WriteLine(p); 
+
             }
         }
         static string Recursion(string number)
@@ -123,11 +139,14 @@ namespace Homework_6_Week_7
             #region SolutionN4
 
             Console.WriteLine("Solutiion N4\n");
-            Console.WriteLine("Enter string int or bool");
-            List<string> words = new List<string>();
-            List<int> numbers = new List<int>();
-            List<bool> bools = new List<bool>();
-       
+            Console.WriteLine("Entered string int or bool");
+            var listOfInt = new List<int>() { 5, 5 };
+            var listOfString = new List<string>() { "test", "random", "programming", "word" };
+            var listOfbools = new List<bool>() { true, false, true, false, true, false, false };
+            GetGenericValue(listOfInt);
+            GetGenericValue(listOfString);
+            GetGenericValue(listOfbools);
+            
             #endregion
 
             #region SolutionN5
