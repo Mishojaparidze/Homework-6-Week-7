@@ -1,172 +1,163 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Homework_6_Week_7
 {
     internal class Program
     {
+        static void GetGenericValue<T>(List<T> someList)
+        {
+            int k=0;
+            if (typeof(T) == typeof(int))
+            {
+                foreach (var integ in someList)
+                {
+                    k += Convert.ToInt32(integ);
+                }
+                Console.WriteLine(k);
+            }
+            else if (typeof(T) == typeof(string))
+            {
+                foreach (var s in someList)
+                {
+                    Console.WriteLine(s.ToString().ToUpper());
+                }
+            }
+           else
+            {
+                int j =someList.Count;
+                int p = someList.Count / 2;
+                Console.WriteLine(someList[0]);
+                Console.WriteLine(j);
+                Console.WriteLine(p); 
+
+            }
+        }
+        static string Recursion(string number)
+        {
+            foreach (var item in number)
+            {
+                Console.WriteLine(item); 
+            }
+            return number;
+        }
+        static string FindLongestCommonSubstring(string s1, string s2)
+        {
+            int[,] a = new int[s1.Length + 1, s2.Length + 1];
+            int row = 0;    // s1 string index
+            int col = 0;    // s2 string index
+
+            for (var i = 0; i < s1.Length; i++)
+                for (var j = 0; j < s2.Length; j++)
+                    if (s1[i] == s2[j])
+                    {
+                        int len = a[i + 1, j + 1] = a[i, j] + 1; // increasing length of common substring if next char is on both string same
+                        if (len > a[row, col])
+                        {
+                            row = i + 1;
+                            col = j + 1;
+                        }
+                    }
+
+            return s1.Substring(row - a[row, col], a[row, col]); // returning the same common substring from the 2 string
+        }
+        static void Numbers1 (int a, int b, int n) 
+        {
+            List<int> numbers = new List<int>();
+            for (int i = 0; i < b/2; i++)
+            {
+                numbers.Add(i);
+            }
+            foreach (int item in numbers)
+            {
+                if (Math.Pow(item,n)>=a && Math.Pow(item,n)<b)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+        }
         static void Main()
         {
             #region SolutionN1
 
-            Console.WriteLine("SolutionN1");
-            Console.WriteLine("Enter Radius Of Circle");
-            int radius= Convert.ToInt32(Console.ReadLine());
-            /* In first square, diameter of the circle equals a side of a square  a=2r
-             * area of the big square equals  S1=a^2=4r^2
-             * let's split small square into 2 equal triangle.
-             * we have a triangle with one angle of 90 degree, which is giving us an opportunity to count one side of the small square
-             * b^2+b^2=(2r)^2  with pythagoras theorem. so from this we can count second square's area which will be S2=b^2
-             * which is = 2r^2
-             * so S1-S2= 4r^2-2r^2= 2r^2
-             */
-            Console.WriteLine(2*radius*radius);
+            Console.WriteLine("Solution N1 \n");
+            Console.WriteLine("Enter minimum");
+            int a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter maximum");
+            int b = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter N number");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Answer:");
+            Numbers1(a, b, n);
 
             #endregion
 
             #region SolutionN2
-            Console.WriteLine("SolutionN2");
-            Console.WriteLine("Enter how many characters you want to enter: ");
 
-            int counter = 0;
-            var n = int.Parse(Console.ReadLine());
-            char[] firstArray = new char[n];
-            Console.WriteLine("Enter Characters");
-            for (int i = 0; i < n; i++)
+
+            Console.WriteLine("Solution N2 \n");
+            Console.WriteLine("Enter word: ");
+            string word=Console.ReadLine();
+            var chars=word.ToCharArray();
+            Dictionary<char, int> charDictionary = new Dictionary<char, int>();
+            foreach (var ch in chars)
             {
-                firstArray[i] = char.Parse(Console.ReadLine());
-            }
-            for (int i = 0; i < n-1; i++)
-            {
-                if (firstArray[0] == firstArray[i + 1])
+                if (charDictionary.ContainsKey(ch))
                 {
-                    counter++;
-                }  
+                    charDictionary[ch] = charDictionary[ch]+1;
+                }
+                else
+                {
+                    charDictionary.Add(ch, 1);
+                }
             }
-            if (counter==n-1)
+            var keys = new HashSet<char>(charDictionary.Keys);
+            foreach (var ch in keys)
             {
-                Console.WriteLine("Yes!!!");
-            }
-            else
-            {
-                Console.WriteLine("No!!!");
+                if (charDictionary[ch]>0)
+                {
+                    Console.WriteLine($"{charDictionary[ch]/2} pair of socks+");
+                   
+                }
             }
 
             #endregion
 
             #region SolutionN3
-            Console.WriteLine("SolutionN3");
-            Console.WriteLine("Enter the results");
-            int[] array=new int[3];
-            for (int i = 0; i < 3; i++)
-            {
-                array[i]=Convert.ToInt32(Console.ReadLine ());
-            }
-            int result = array[0] * 3 + array[1];
-            Console.WriteLine($"result: {result}");
+            Console.WriteLine("Solutiion N3\n");
 
+            Console.WriteLine("enter first word");
+            string word1 = Console.ReadLine();
+            Console.WriteLine("enter second word");
+            string word2 = Console.ReadLine();
+
+            Console.WriteLine(FindLongestCommonSubstring(word1,word2));
 
             #endregion
 
             #region SolutionN4
-            Console.WriteLine("SolutionN4");
-            Console.WriteLine("Enter the hours of the work:");
-            int[] arrayWorkHours = new int[7];
-            int salary = 0;
-            for (int i = 0; i < 7; i++)
-            { 
-                arrayWorkHours[i] = Convert.ToInt32(Console.ReadLine());
-            }
-            for (int i = 0; i < 5; i++)
-            {
-                if (arrayWorkHours[i] <= 8)
-                {
-                    salary += arrayWorkHours[i] * 10;
-                }
-                else{
-                    salary += arrayWorkHours[i] * 15;
-                }
-                
-            }
+
+            Console.WriteLine("Solutiion N4\n");
+            Console.WriteLine("Entered string int or bool");
+            var listOfInt = new List<int>() { 5, 5 };
+            var listOfString = new List<string>() { "test", "random", "programming", "word" };
+            var listOfbools = new List<bool>() { true, false, true, false, true, false, false };
+            GetGenericValue(listOfInt);
+            GetGenericValue(listOfString);
+            GetGenericValue(listOfbools);
             
-            if (arrayWorkHours[5] > 0) 
-            {
-                if (arrayWorkHours[5]>8)
-                {
-                    salary += (arrayWorkHours[5] - 8) * 30 + arrayWorkHours[5] * 20;
-                }
-                else
-                {
-                    salary += arrayWorkHours[5] * 20;
-                }
-            }
-            if (arrayWorkHours[6] > 0)
-            {
-                if (arrayWorkHours[6] > 8)
-                {
-                    salary += (arrayWorkHours[6] - 8) * 30 + arrayWorkHours[6] * 20;
-                }
-                else
-                {
-                    salary += arrayWorkHours[6] * 20;
-                }
-            }
-
-
-            Console.WriteLine(salary);
-
-
-
             #endregion
 
             #region SolutionN5
 
-            Console.WriteLine("SolutionN5 ");
-            Console.WriteLine("Enter the hours of work for 5 days:");
-            int[] arrayWourkoutHour = new int[5];
-            int k=0;
-            for (int i = 0; i < 5; i++)
-            {
-                arrayWourkoutHour[i] = Convert.ToInt32(Console.ReadLine());
-            }
-            
-            for (int i = 0; i < arrayWourkoutHour.Length-1; i++)
-            {
-                if (arrayWourkoutHour[i] < arrayWourkoutHour[i+1])
-                {
-                    k++;
-                }
-            }
-            Console.WriteLine(k);
+            Console.WriteLine("Solution N5 \n");
+            Console.WriteLine("Enter your number");
+            string numberFromConsole = Console.ReadLine();
 
+            Console.WriteLine(Recursion(numberFromConsole));
 
             #endregion
-
-            #region SolutionN6
-
-            Console.WriteLine("SolutionN6");
-            Console.WriteLine("Enter how many words you want to enter:");
-            int j = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter words:");
-
-            List <string> myList = new List <string>();
-            for (int i = 0; i < j; i++)
-            {
-                myList.Add(Console.ReadLine());
-            }
-            Console.WriteLine("Enter searching length of words:");
-            int t = Convert.ToInt32(Console.ReadLine());
-            foreach (var item in myList)
-            {
-                if (item.Length>t)
-                {
-                    Console.WriteLine(item);
-                }
-            }
-
-
-            #endregion
-
         }
     }
 }
