@@ -6,158 +6,231 @@ namespace Homework_6_Week_7
 {
     internal class Program
     {
-        static void GetGenericValue<T>(List<T> someList)
+        public class Company
         {
-            int k = 0;
-            if (typeof(T) == typeof(int))
+            public static string Nationality(string nationality, int totalPayment)
             {
-                foreach (var integ in someList)
+                int percentGeorgia = 18;
+                int percentForeign = 5;
+                int totalToPay = 0;
+                if (nationality == "Georgia")
                 {
-                    k += Convert.ToInt32(integ);
-                }
-                Console.WriteLine(k);
-            }
-            else if (typeof(T) == typeof(string))
-            {
-                foreach (var s in someList)
-                {
-                    Console.WriteLine(s.ToString().ToUpper());
-                }
-            }
-            else
-            {
-                int j = someList.Count;
-                int p = someList.Count / 2;
-                Console.WriteLine(someList[0]);
-                Console.WriteLine(someList[j]);
-                Console.WriteLine(someList[p]);
-
-            }
-        }
-        static string Recursion(string number)
-        {
-            foreach (var item in number)
-            {
-                Console.WriteLine(item); 
-            }
-            return number;
-        }
-        static string FindLongestCommonSubstring(string s1, string s2)
-        {
-            int[,] a = new int[s1.Length + 1, s2.Length + 1];
-            int row = 0;    // s1 string index
-            int col = 0;    // s2 string index
-
-            for (var i = 0; i < s1.Length; i++)
-                for (var j = 0; j < s2.Length; j++)
-                    if (s1[i] == s2[j])
-                    {
-                        int len = a[i + 1, j + 1] = a[i, j] + 1; // increasing length of common substring if next char is on both string same
-                        if (len > a[row, col])
-                        {
-                            row = i + 1;
-                            col = j + 1;
-                        }
-                    }
-
-            return s1.Substring(row - a[row, col], a[row, col]); // returning the same common substring from the 2 string
-        }
-        static void Numbers1 (int a, int b, int n) 
-        {
-            List<int> numbers = new List<int>();
-            for (int i = 0; i < b/2; i++)
-            {
-                numbers.Add(i);
-            }
-            foreach (int item in numbers)
-            {
-                if (Math.Pow(item,n)>=a && Math.Pow(item,n)<b)
-                {
-                    Console.WriteLine(item);
-                }
-            }
-        }
-        static void Main()
-        {
-            #region SolutionN1
-
-            Console.WriteLine("Solution N1 \n");
-            Console.WriteLine("Enter minimum");
-            int a = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter maximum");
-            int b = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter N number");
-            int n = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Answer:");
-            Numbers1(a, b, n);
-
-            #endregion
-
-            #region SolutionN2
-
-
-            Console.WriteLine("Solution N2 \n");
-            Console.WriteLine("Enter word: ");
-            string word=Console.ReadLine();
-            var chars=word.ToCharArray();
-            Dictionary<char, int> charDictionary = new Dictionary<char, int>();
-            foreach (var ch in chars)
-            {
-                if (charDictionary.ContainsKey(ch))
-                {
-                    charDictionary[ch] = charDictionary[ch]+1;
+                    totalToPay = totalPayment * percentGeorgia / 100;
                 }
                 else
                 {
-                    charDictionary.Add(ch, 1);
+                    totalToPay = totalPayment * percentForeign / 100;
                 }
+                return "Total to pay to government: " + totalToPay;
             }
-            var keys = new HashSet<char>(charDictionary.Keys);
-            foreach (var ch in keys)
+        }
+
+        public class Emploee
+        {
+            public static string CountingSalary()
             {
-                if (charDictionary[ch]>0)
+                string name = "Mike";
+                string surname = "Wazowski";
+                int age = 25;
+                string position = "Developer";
+                int[] workingHours = new int[] { 8, 8, 10, 8, 9, 0, 0 };
+                int developerSalary = 30;
+                int managerSalary = 40;
+                int testerSalary = 20;
+                int diffSalary = 10;
+                int salary = 0;
+                int totalWorkHours = 0;
+                int bonusSalary = 20;
+                int overTimeSalary = 5;
+                if (position == "Developer")
                 {
-                    Console.WriteLine($"{charDictionary[ch]/2} pair of socks+");
-                   
+                    for (int i = 0; i < workingHours.Length; i++)
+                    {
+                        totalWorkHours += workingHours[i];
+                        if (workingHours[i] <= 8)
+                        {
+                            salary += workingHours[i] * developerSalary;
+                        }
+                        else
+                        {
+                            salary += (workingHours[i] * developerSalary) + ((workingHours[i] - 8) * overTimeSalary);
+                        }
+
+                    }
+                    if (totalWorkHours >= 50)
+                    {
+                        salary += salary * bonusSalary / 100;
+                    }
                 }
+                return $"{name}--{surname}-- total salary is {salary} ";
             }
 
+
+        }
+        public class Teacher
+        {
+
+            public string Name { get; set; }
+            public string Status { get; set; }
+
+            public static string Subject()
+            {
+                Student studentClass = new Student();
+                var subject = Student.GetSubject();
+                Random rand = new Random();
+                int x = rand.Next(0, 100);
+                int y = rand.Next(0, 100);
+                switch (subject)
+                {
+                    case "Mathematics":
+                        Console.WriteLine(x + y);
+                        break;
+                    case "Chemistry":
+                        Console.WriteLine("H2O");
+                        break;
+                    case "English":
+                        Console.WriteLine("This look's like a job for me!");
+                        break;
+                    default:
+                        Console.WriteLine("Ohh, i am not very competent in this subject");
+                        break;
+                }
+                return null;
+            }
+
+
+        }
+        public class Student
+        {
+            public string Name { get; set; }
+            public int Age { get; set; }
+            public int AdmissionTime { get; set; }
+
+            public static string GetSubject()
+            {
+                string[] subject = new string[] { "Mathematics", "English", "History", "Geography", "Chemistry" };
+                Random rand = new Random();
+                int y = rand.Next(subject.Length);
+                return subject[y];
+            }
+            public void LeftYears(int admissionTime)
+            {
+                AdmissionTime = admissionTime;
+                Console.WriteLine((AdmissionTime + 4) - 2022);
+            }
+        }
+        static void StudentInfo()
+        {
+            Student studentClass = new Student();
+            Teacher teacherClass = new Teacher();
+            Console.WriteLine("Enter Name of a student");
+            studentClass.Name = Console.ReadLine(); ;
+            Console.WriteLine("Enter Age of a student");
+            studentClass.Age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Admission time of a student in university");
+            studentClass.AdmissionTime = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(Student.GetSubject());
+            int admissionTime = studentClass.AdmissionTime;
+            var newStudent = new Student();
+            Console.WriteLine("this is how much is left to study: ");
+            newStudent.LeftYears(admissionTime);
+            Console.WriteLine("Subject is: ");
+            Console.WriteLine(Student.GetSubject());
+        }
+        static void CompanyAndEmploeeInfo()
+        {
+            Company myclass = new Company();
+            Emploee mycalss = new Emploee();
+            Console.WriteLine("Enter Nationality of the company");
+            string nationality = Console.ReadLine();
+            Console.WriteLine("Enter total payment of the company");
+            int totalPayment = Convert.ToInt32(Console.ReadLine());
+            string v = Company.Nationality(nationality, totalPayment);
+            Console.WriteLine(v);
+            string y = Emploee.CountingSalary();
+            Console.WriteLine(y);
+        }
+        public class StudentsInformation
+        {
+            public string Name { get; set; }
+            public void Study(string studying)
+            {
+                studying = null;
+            }
+            public void Read(string read)
+            {
+                read = null;
+            }
+            public void Write(string write)
+            {
+                write = null;
+            }
+            public void Relax(string relax)
+            {
+                relax = null;
+            }
+
+        }
+        public class GoodStudent : StudentsInformation
+        {
+            public GoodStudent()
+            {
+                Study("He is studying very good!");
+                Read("He is reading William Shakespear");
+                Write("he is writing novels");
+                Relax("He is not relaxed");
+            }
+        }
+        public class LazyStudent : StudentsInformation
+        {
+            public LazyStudent()
+            {
+                Study("He is not studying");
+                Read("he is not readying anything!");
+                Write("he is stil writing Novels!");
+                Relax("He is relaxed");
+            }
+        }
+        public class ClassRoom
+        {
+            public ClassRoom()
+            {
+            }
+
+            public ClassRoom(string Name)
+            {
+                StudentsInformation studentsInformation = new StudentsInformation();
+                studentsInformation.Name = Name;
+                var goodStudent = new GoodStudent();
+                Console.WriteLine(goodStudent);
+                var lazyStudent = new LazyStudent();
+                Console.WriteLine(lazyStudent);
+            }
+        }
+        static void TeacherInfo()
+        {
+            Teacher teacher = new Teacher();
+            Console.WriteLine("Enter Teacher's Name: ");
+            teacher.Name = Console.ReadLine();
+            Console.WriteLine("Enter if Teacher is certified or not: ");
+            teacher.Status = Console.ReadLine();
+            Teacher.Subject();
+
+        }
+        static void Main(string[] args)
+        {
+            #region SolutionN1
+            CompanyAndEmploeeInfo();
             #endregion
 
-            #region SolutionN3
-            Console.WriteLine("Solutiion N3\n");
-
-            Console.WriteLine("enter first word");
-            string word1 = Console.ReadLine();
-            Console.WriteLine("enter second word");
-            string word2 = Console.ReadLine();
-
-            Console.WriteLine(FindLongestCommonSubstring(word1,word2));
-
-            #endregion
-
-            #region SolutionN4
-
-            Console.WriteLine("Solutiion N4\n");
-            Console.WriteLine("Entered string int or bool");
-            var listOfInt = new List<int>() { 5, 5 };
-            var listOfString = new List<string>() { "test", "random", "programming", "word" };
-            var listOfbools = new List<bool>() { true, false, true, false, true, false, false };
-            GetGenericValue(listOfInt);
-            GetGenericValue(listOfString);
-            GetGenericValue(listOfbools);
-            
-            #endregion
-
-            #region SolutionN5
-
-            Console.WriteLine("Solution N5 \n");
-            Console.WriteLine("Enter your number");
-            string numberFromConsole = Console.ReadLine();
-
-            Console.WriteLine(Recursion(numberFromConsole));
-
+            #region SolutionN2
+            StudentInfo();
+            TeacherInfo();
+            ClassRoom classRoomClass = new ClassRoom();
+            var classRoom = new ClassRoom();
+            Console.WriteLine(classRoom);
             #endregion
         }
     }
 }
+
