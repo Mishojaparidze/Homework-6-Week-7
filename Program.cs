@@ -6,6 +6,7 @@ namespace Homework_6_Week_7
 {
     internal class Program
     {
+
         public class Company
         {
             public static string Nationality(string nationality, int totalPayment)
@@ -153,21 +154,21 @@ namespace Homework_6_Week_7
         public class StudentsInformation
         {
             public string Name { get; set; }
-            public void Study(string studying)
+            public void Study(string study)
             {
-                studying = null;
+                Console.WriteLine(study);
             }
             public void Read(string read)
             {
-                read = null;
+                Console.WriteLine(read);
             }
             public void Write(string write)
             {
-                write = null;
+                Console.WriteLine(write);
             }
             public void Relax(string relax)
             {
-                relax = null;
+                Console.WriteLine(relax);
             }
 
         }
@@ -175,26 +176,43 @@ namespace Homework_6_Week_7
         {
             public GoodStudent()
             {
-                Study("He is studying very good!");
-                Read("He is reading William Shakespear");
-                Write("he is writing novels");
-                Relax("He is not relaxed");
+                string study = "He is studying very good!";
+                Study(study);
+                string read = "He is reading William Shakespear";
+                Read(read);
+                string write = "he is writing novels";
+                Write(write);
+                string relax = "He is not relaxed";
+                Relax(relax);
+
+
+
             }
+
         }
         public class LazyStudent : StudentsInformation
         {
             public LazyStudent()
             {
-                Study("He is not studying");
-                Read("he is not readying anything!");
-                Write("he is stil writing Novels!");
-                Relax("He is relaxed");
+                string study = "He is not studying!";
+                Study(study);
+                string read = "he is not readying anything!";
+                Read(read);
+                string write = "he is stil writing Novels!";
+                Write(write);
+                string relax = "He is relaxed";
+                Relax(relax);
             }
         }
         public class ClassRoom
         {
             public ClassRoom()
             {
+                StudentsInformation studentsInformation = new StudentsInformation();
+                studentsInformation.Name = "Mike Wazowski";
+                Console.WriteLine($"{studentsInformation.Name}---");
+
+
             }
 
             public ClassRoom(string Name)
@@ -204,6 +222,8 @@ namespace Homework_6_Week_7
                 var goodStudent = new GoodStudent();
                 Console.WriteLine(goodStudent);
                 var lazyStudent = new LazyStudent();
+
+
                 Console.WriteLine(lazyStudent);
             }
         }
@@ -220,15 +240,23 @@ namespace Homework_6_Week_7
         static void Main(string[] args)
         {
             #region SolutionN1
+            Console.WriteLine("Solution N1");
             CompanyAndEmploeeInfo();
             #endregion
 
             #region SolutionN2
+            Console.WriteLine("Solution N2");
             StudentInfo();
             TeacherInfo();
+
+            #endregion
+
+            #region SolutionN3
+            Console.WriteLine("Solution N3");
             ClassRoom classRoomClass = new ClassRoom();
             var classRoom = new ClassRoom();
             Console.WriteLine(classRoom);
+
             #endregion
         }
     }
